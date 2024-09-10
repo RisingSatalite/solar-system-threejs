@@ -29,7 +29,7 @@ export class Earth extends Planet {
     }).getPlanet();
   
     // Position the moon relative to Earth
-    moon.position.set(2, 0, 0);  // Position the moon on the X axis, for example
+    moon.position.set(0, 0, 0);  // Position the moon on the X axis, for example
   
     this.planetGroup.add(moon);
   }
