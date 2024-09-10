@@ -5,6 +5,7 @@ import {
   MeshStandardMaterial,
 } from "three";
 import { Planet } from "./planet";
+import { Moon } from "./moon";
 
 export class Earth extends Planet {
   constructor(props) {
@@ -12,6 +13,12 @@ export class Earth extends Planet {
 
     this.createPlanetLights();
     this.createPlanetClouds();
+    this.addMoon();
+  }
+
+  addMoon(){
+    //const moon = new Moon.getPlanet();
+    //this.planetGroup.add(moon)
   }
 
   createPlanetLights() {

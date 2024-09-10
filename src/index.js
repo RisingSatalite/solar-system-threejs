@@ -4,8 +4,10 @@ import {
   PerspectiveCamera,
   LinearSRGBColorSpace,
   ACESFilmicToneMapping,
+  Vector3
 } from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+import { PointerLockControls } from "three/addons/controls/PointerLockControls.js"; // Add PointerLockControls
 
 import { Sun } from "./sun";
 import { Earth } from "./earth";
@@ -99,18 +101,28 @@ const h = window.innerHeight;
 const scene = new Scene();
 const camera = new PerspectiveCamera(75, w / h, 0.1, 100);
 const renderer = new WebGLRenderer({ antialias: true });
-const controls = new OrbitControls(camera, renderer.domElement);
+const orbitControls = new OrbitControls(camera, renderer.domElement);
+const pointerControls = new PointerLockControls(camera, document.body); // Add PointerLockControls
 
-controls.minDistance = 10;
-controls.maxDistance = 60;
+// Movement-related variables for PointerLockControls
+let moveForward = false, moveBackward = false, moveLeft = false, moveRight = false;
+const velocity = new Vector3();
+const direction = new Vector3();
+const movementSpeed = 5;
+
+// OrbitControls setup
+orbitControls.minDistance = 10;
+orbitControls.maxDistance = 60;
 camera.position.set(30 * Math.cos(Math.PI / 6), 30 * Math.sin(Math.PI / 6), 40);
 
+// Renderer setup
 renderer.setSize(w, h);
 renderer.setPixelRatio(window.devicePixelRatio);
 renderer.toneMapping = ACESFilmicToneMapping;
 renderer.outputColorSpace = LinearSRGBColorSpace;
 document.body.appendChild(renderer.domElement);
 
+// Add celestial objects
 const sun = new Sun().getSun();
 scene.add(sun);
 
@@ -134,8 +146,7 @@ planets.forEach((item) => {
   scene.add(planet);
 });
 
-renderer.render(scene, camera);
-
+// Handle window resize
 window.addEventListener("resize", () => {
   const w = window.innerWidth;
   const h = window.innerHeight;
@@ -144,9 +155,89 @@ window.addEventListener("resize", () => {
   camera.updateProjectionMatrix();
 });
 
+// PointerLockControls movement controls
+const onKeyDown = (event) => {
+  switch (event.code) {
+    case 'ArrowUp':
+    case 'KeyW':
+      moveForward = true;
+      break;
+    case 'ArrowLeft':
+    case 'KeyA':
+      moveLeft = true;
+      break;
+    case 'ArrowDown':
+    case 'KeyS':
+      moveBackward = true;
+      break;
+    case 'ArrowRight':
+    case 'KeyD':
+      moveRight = true;
+      break;
+  }
+};
+
+const onKeyUp = (event) => {
+  switch (event.code) {
+    case 'ArrowUp':
+    case 'KeyW':
+      moveForward = false;
+      break;
+    case 'ArrowLeft':
+    case 'KeyA':
+      moveLeft = false;
+      break;
+    case 'ArrowDown':
+    case 'KeyS':
+      moveBackward = false;
+      break;
+    case 'ArrowRight':
+    case 'KeyD':
+      moveRight = false;
+      break;
+  }
+};
+
+document.addEventListener('keydown', onKeyDown);
+document.addEventListener('keyup', onKeyUp);
+
+// Switch between Orbit and PointerLock controls on click
+document.addEventListener("click", () => {
+  if (pointerControls.isLocked) {
+    pointerControls.unlock();  // Switch back to OrbitControls
+    orbitControls.enabled = true;  // Re-enable OrbitControls
+  } else {
+    pointerControls.lock();  // Lock to PointerLockControls
+    orbitControls.enabled = false;  // Disable OrbitControls while PointerLock is active
+  }
+});
+
+// Animation loop
 const animate = () => {
   requestAnimationFrame(animate);
-  controls.update();
+
+  if (pointerControls.isLocked) {
+    // Free movement mode
+    const delta = 0.1;  // Time step for movement
+
+    direction.z = Number(moveForward) - Number(moveBackward);
+    direction.x = Number(moveRight) - Number(moveLeft);
+    direction.normalize(); // To avoid faster diagonal movement
+
+    if (moveForward || moveBackward) velocity.z -= direction.z * movementSpeed * delta;
+    if (moveLeft || moveRight) velocity.x -= direction.x * movementSpeed * delta;
+
+    pointerControls.moveRight(-velocity.x * delta);
+    pointerControls.moveForward(-velocity.z * delta);
+
+    // Damp velocity for smooth movement
+    velocity.x *= 0.9;
+    velocity.z *= 0.9;
+  } else {
+    // Orbit mode
+    orbitControls.update();
+  }
+
   renderer.render(scene, camera);
 };
 

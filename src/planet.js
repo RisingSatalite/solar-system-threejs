@@ -22,11 +22,11 @@ export class Planet {
   planetGeometry;
 
   constructor({
-    orbitSpeed = 1,
-    orbitRadius = 1,
+    orbitSpeed = 0.0001,
+    orbitRadius = 0.0001,
     orbitRotationDirection = "clockwise",
 
-    planetSize = 1,
+    planetSize = 0.1,
     planetAngle = 0,
     planetRotationSpeed = 1,
     planetRotationDirection = "clockwise",
