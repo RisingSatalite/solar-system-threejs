@@ -16,10 +16,25 @@ export class Earth extends Planet {
     this.addMoon();
   }
 
-  addMoon(){
-    //const moon = new Moon.getPlanet();
-    //this.planetGroup.add(moon)
+  addMoon() {
+    const moon = new Moon({
+      orbitSpeed: 0.00048,
+      orbitRadius: 2,  // Set an appropriate distance for the moon
+      orbitRotationDirection: "clockwise",
+      planetSize: 0.1,  // Smaller size for the moon
+      planetRotationSpeed: 0.005,
+      planetRotationDirection: "counterclockwise",
+      planetTexture: "/solar-system-threejs/assets/moon-texture.jpg",
+      rimHex: 0xffffff,  // Moon's rim color
+    }).getPlanet();
+  
+    // Position the moon relative to Earth
+    moon.position.set(2, 0, 0);  // Position the moon on the X axis, for example
+  
+    this.planetGroup.add(moon);
   }
+  
+  
 
   createPlanetLights() {
     const planetLightsMaterial = new MeshBasicMaterial({

@@ -80,7 +80,7 @@ export class Planet {
     planetMaterial.map.colorSpace = SRGBColorSpace;
     const planetMesh = new Mesh(this.planetGeometry, planetMaterial);
     this.planetGroup.add(planetMesh);
-    this.planetGroup.position.x = this.orbitRadius - this.planetSize / 9;
+    this.planetGroup.position.x = this.orbitRadius - this.planetSize / 1;//9
     this.planetGroup.rotation.z = this.planetAngle;
     this.group.add(this.planetGroup);
   }
