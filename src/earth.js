@@ -24,7 +24,7 @@ export class Earth extends Planet {
       planetSize: 0.1,  // Smaller size for the moon
       planetRotationSpeed: 0.005,
       planetRotationDirection: "counterclockwise",
-      planetTexture: "/solar-system-threejs/assets/moon-texture.jpg",
+      planetTexture: "/assets/moon-texture.jpg",
       rimHex: 0xffffff,  // Moon's rim color
     }).getPlanet();
   
@@ -38,7 +38,7 @@ export class Earth extends Planet {
 
   createPlanetLights() {
     const planetLightsMaterial = new MeshBasicMaterial({
-      map: this.loader.load("/solar-system-threejs/assets/earth-map-2.jpg"),
+      map: this.loader.load("/assets/earth-map-2.jpg"),
       blending: AdditiveBlending,
     });
     const planetLightsMesh = new Mesh(
@@ -52,12 +52,12 @@ export class Earth extends Planet {
 
   createPlanetClouds() {
     const planetCloudsMaterial = new MeshStandardMaterial({
-      map: this.loader.load("/solar-system-threejs/assets/earth-map-3.jpg"),
+      map: this.loader.load("/assets/earth-map-3.jpg"),
       transparent: true,
       opacity: 0.8,
       blending: AdditiveBlending,
       alphaMap: this.loader.load(
-        "/solar-system-threejs/assets/earth-map-4.jpg"
+        "/assets/earth-map-4.jpg"
       ),
     });
     const planetCloudsMesh = new Mesh(

@@ -22,7 +22,7 @@ const planets = [
     planetSize: 0.2,
     planetRotationSpeed: 0.005,
     planetRotationDirection: "counterclockwise",
-    planetTexture: "/solar-system-threejs/assets/mercury-map.jpg",
+    planetTexture: "/assets/mercury-map.jpg",
     rimHex: 0xf9cf9f,
   },
   {
@@ -32,7 +32,7 @@ const planets = [
     planetSize: 0.5,
     planetRotationSpeed: 0.0005,
     planetRotationDirection: "clockwise",
-    planetTexture: "/solar-system-threejs/assets/venus-map.jpg",
+    planetTexture: "/assets/venus-map.jpg",
     rimHex: 0xb66f1f,
   },
   {
@@ -42,7 +42,7 @@ const planets = [
     planetSize: 0.3,
     planetRotationSpeed: 0.01,
     planetRotationDirection: "counterclockwise",
-    planetTexture: "/solar-system-threejs/assets/mars-map.jpg",
+    planetTexture: "/assets/mars-map.jpg",
     rimHex: 0xbc6434,
   },
   {
@@ -52,7 +52,7 @@ const planets = [
     planetSize: 1,
     planetRotationSpeed: 0.06,
     planetRotationDirection: "counterclockwise",
-    planetTexture: "/solar-system-threejs/assets/jupiter-map.jpg",
+    planetTexture: "/assets/jupiter-map.jpg",
     rimHex: 0xf3d6b6,
   },
   {
@@ -62,11 +62,11 @@ const planets = [
     planetSize: 0.8,
     planetRotationSpeed: 0.05,
     planetRotationDirection: "counterclockwise",
-    planetTexture: "/solar-system-threejs/assets/saturn-map.jpg",
+    planetTexture: "/assets/saturn-map.jpg",
     rimHex: 0xd6b892,
     rings: {
       ringsSize: 0.5,
-      ringsTexture: "/solar-system-threejs/assets/saturn-rings.jpg",
+      ringsTexture: "/assets/saturn-rings.jpg",
     },
   },
   {
@@ -76,11 +76,11 @@ const planets = [
     planetSize: 0.5,
     planetRotationSpeed: 0.02,
     planetRotationDirection: "clockwise",
-    planetTexture: "/solar-system-threejs/assets/uranus-map.jpg",
+    planetTexture: "/assets/uranus-map.jpg",
     rimHex: 0x9ab6c2,
     rings: {
       ringsSize: 0.4,
-      ringsTexture: "/solar-system-threejs/assets/uranus-rings.jpg",
+      ringsTexture: "/assets/uranus-rings.jpg",
     },
   },
   {
@@ -90,7 +90,7 @@ const planets = [
     planetSize: 0.5,
     planetRotationSpeed: 0.02,
     planetRotationDirection: "counterclockwise",
-    planetTexture: "/solar-system-threejs/assets/neptune-map.jpg",
+    planetTexture: "/assets/neptune-map.jpg",
     rimHex: 0x5c7ed7,
   },
 ];
