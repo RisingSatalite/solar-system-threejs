@@ -93,6 +93,16 @@ const planets = [
     planetTexture: "/assets/neptune-map.jpg",
     rimHex: 0x5c7ed7,
   },
+  {
+    orbitSpeed: 0.000054,
+    orbitRadius: 34,
+    orbitRotationDirection: "clockwise",
+    planetSize: 0.5,
+    planetRotationSpeed: 0.02,
+    planetRotationDirection: "counterclockwise",
+    planetTexture: "/assets/pluto-map.jpg",
+    rimHex: 0x0c0e07,
+  },
 ];
 
 const w = window.innerWidth;
