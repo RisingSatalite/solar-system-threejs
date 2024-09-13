@@ -144,7 +144,7 @@ const earth = new Earth({
   planetAngle: (-23.4 * Math.PI) / 180,
   planetRotationSpeed: 0.01,
   planetRotationDirection: "counterclockwise",
-  planetTexture: "/solar-system-threejs/assets/earth-map-1.jpg",
+  planetTexture: "/assets/earth-map-1.jpg",
 }).getPlanet();
 scene.add(earth);
 
