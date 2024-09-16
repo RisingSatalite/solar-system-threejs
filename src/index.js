@@ -166,8 +166,6 @@ window.addEventListener("resize", () => {
 });
 
 // PointerLockControls movement controls
-
-//add move down
 const onKeyDown = (event) => {
   switch (event.code) {
     case 'ArrowUp':
@@ -186,10 +184,10 @@ const onKeyDown = (event) => {
     case 'KeyD':
       moveRight = true;
       break;
-    case 'KeyE':
+    case 'KeyE':  // Move Up
       moveUp = true;
       break;
-    case 'KeyQ':
+    case 'KeyQ':  // Move Down
       moveDown = true;
       break;
   }
@@ -213,14 +211,15 @@ const onKeyUp = (event) => {
     case 'KeyD':
       moveRight = false;
       break;
-    case 'KeyE':
-      moveUp = true;
+    case 'KeyE':  // Stop moving up
+      moveUp = false;
       break;
-    case 'KeyQ':
-      moveDown = true;
+    case 'KeyQ':  // Stop moving down
+      moveDown = false;
       break;
   }
 };
+
 
 document.addEventListener('keydown', onKeyDown);
 document.addEventListener('keyup', onKeyUp);
@@ -241,8 +240,7 @@ const animate = () => {
   requestAnimationFrame(animate);
 
   if (pointerControls.isLocked) {
-    // Free movement mode
-    const delta = 0.1;  // Time step for movement
+    const delta = 0.1;  // Adjust time step
 
     direction.z = Number(moveForward) - Number(moveBackward);
     direction.x = Number(moveRight) - Number(moveLeft);
@@ -253,8 +251,12 @@ const animate = () => {
     if (moveLeft || moveRight) velocity.x -= direction.x * movementSpeed * delta;
     if (moveUp || moveDown) velocity.y -= direction.y * movementSpeed * delta;
 
+    // Apply horizontal movement
     pointerControls.moveRight(-velocity.x * delta);
     pointerControls.moveForward(-velocity.z * delta);
+
+    // Apply vertical movement directly to the camera's y position
+    camera.position.y += velocity.y * delta;
 
     // Damp velocity for smooth movement
     velocity.x *= 0.9;
@@ -267,5 +269,6 @@ const animate = () => {
 
   renderer.render(scene, camera);
 };
+
 
 animate();
