@@ -115,7 +115,7 @@ const orbitControls = new OrbitControls(camera, renderer.domElement);
 const pointerControls = new PointerLockControls(camera, document.body); // Add PointerLockControls
 
 // Movement-related variables for PointerLockControls
-let moveForward = false, moveBackward = false, moveLeft = false, moveRight = false;
+let moveForward = false, moveBackward = false, moveLeft = false, moveRight = false, moveUp = false, moveDown = false;
 const velocity = new Vector3();
 const direction = new Vector3();
 const movementSpeed = 5;
@@ -166,6 +166,8 @@ window.addEventListener("resize", () => {
 });
 
 // PointerLockControls movement controls
+
+//add move down
 const onKeyDown = (event) => {
   switch (event.code) {
     case 'ArrowUp':
@@ -183,6 +185,12 @@ const onKeyDown = (event) => {
     case 'ArrowRight':
     case 'KeyD':
       moveRight = true;
+      break;
+    case 'KeyE':
+      moveUp = true;
+      break;
+    case 'KeyQ':
+      moveDown = true;
       break;
   }
 };
@@ -204,6 +212,12 @@ const onKeyUp = (event) => {
     case 'ArrowRight':
     case 'KeyD':
       moveRight = false;
+      break;
+    case 'KeyE':
+      moveUp = true;
+      break;
+    case 'KeyQ':
+      moveDown = true;
       break;
   }
 };
@@ -232,10 +246,12 @@ const animate = () => {
 
     direction.z = Number(moveForward) - Number(moveBackward);
     direction.x = Number(moveRight) - Number(moveLeft);
+    direction.y = Number(moveUp) - Number(moveDown);
     direction.normalize(); // To avoid faster diagonal movement
 
     if (moveForward || moveBackward) velocity.z -= direction.z * movementSpeed * delta;
     if (moveLeft || moveRight) velocity.x -= direction.x * movementSpeed * delta;
+    if (moveUp || moveDown) velocity.y -= direction.y * movementSpeed * delta;
 
     pointerControls.moveRight(-velocity.x * delta);
     pointerControls.moveForward(-velocity.z * delta);
@@ -243,6 +259,7 @@ const animate = () => {
     // Damp velocity for smooth movement
     velocity.x *= 0.9;
     velocity.z *= 0.9;
+    velocity.y *= 0.9;
   } else {
     // Orbit mode
     orbitControls.update();
