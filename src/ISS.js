@@ -3,7 +3,17 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 export class ISS extends Satlite {
   constructor(props) {
-    super(props);
+    super({
+        ...props,  // Spread any incoming props to allow custom overrides
+        orbitSpeed: 0.00001,
+        orbitRadius: 1,
+        orbitRotationDirection: "clockwise",
+        planetSize: 0.05,
+        planetRotationSpeed: 0.0001,
+        planetRotationDirection: "counterclockwise",
+        planetTexture: "/assets/moon-texture.jpg",
+        rimHex: 0xffffff,
+      });
     
     this.useModel();  // Load and use the model
   }

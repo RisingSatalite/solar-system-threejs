@@ -37,16 +37,7 @@ export class Earth extends Planet {
   }
 
   addISS() {
-    const ISSmodel = new ISS({
-      orbitSpeed: 0.00001,
-      orbitRadius: 1,  // Set an appropriate distance
-      orbitRotationDirection: "clockwise",
-      planetSize: 0.05,  // Smaller size for other object
-      planetRotationSpeed: 0.005,
-      planetRotationDirection: "counterclockwise",
-      planetTexture: "/assets/moon-texture.jpg",
-      rimHex: 0xffffff,  // Moon's rim color
-    }).getPlanet();
+    const ISSmodel = new ISS().getPlanet();
 
     ISSmodel.position.set(0, 0, 0);
   
