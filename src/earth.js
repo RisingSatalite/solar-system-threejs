@@ -14,6 +14,7 @@ export class Earth extends Planet {
     this.createPlanetLights();
     this.createPlanetClouds();
     this.addMoon();
+    this.addISS();
   }
 
   addMoon() {
@@ -33,8 +34,22 @@ export class Earth extends Planet {
   
     this.planetGroup.add(moon);
   }
+
+  addISS() {
+    const ISS = new Moon({
+      orbitSpeed: 0.00048,
+      orbitRadius: 1,  // Set an appropriate distance
+      orbitRotationDirection: "clockwise",
+      planetSize: 0,  // Smaller size for other object
+      planetRotationSpeed: 0.005,
+      planetRotationDirection: "counterclockwise",
+    }).getPlanet();
   
+    // Position the moon relative to Earth
+    moon.position.set(0, 0, 0);  // Position the moon on the X axis, for example
   
+    this.planetGroup.add(ISS);
+  }
 
   createPlanetLights() {
     const planetLightsMaterial = new MeshBasicMaterial({
