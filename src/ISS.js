@@ -10,12 +10,18 @@ export class ISS extends Satlite {
 
   useModel() {
     const loader = new GLTFLoader();
+
+    console.log("Loading ISS model")
     
     loader.load('iss.glb', (gltf) => {
       const issModel = gltf.scene;
+
+      issModel.scale.set(0.005, 0.005, 0.005);
+
       issModel.position.set(0, 0, 0);  // Position the ISS at (0, 0, 0)
 
       this.planetGroup.add(issModel);  // Add the model to the inherited group
+      console.log("ISS loaded successfully")
     }, undefined, (error) => {
       console.error('Error loading ISS model:', error);
     });

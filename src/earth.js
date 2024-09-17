@@ -6,6 +6,7 @@ import {
 } from "three";
 import { Planet } from "./planet";
 import { Moon } from "./moon";
+import { ISS } from "./ISS"
 
 export class Earth extends Planet {
   constructor(props) {
@@ -36,19 +37,20 @@ export class Earth extends Planet {
   }
 
   addISS() {
-    const ISS = new Moon({
-      orbitSpeed: 0.00048,
+    const ISSmodel = new ISS({
+      orbitSpeed: 0.00001,
       orbitRadius: 1,  // Set an appropriate distance
       orbitRotationDirection: "clockwise",
-      planetSize: 0,  // Smaller size for other object
+      planetSize: 0.05,  // Smaller size for other object
       planetRotationSpeed: 0.005,
       planetRotationDirection: "counterclockwise",
+      planetTexture: "/assets/moon-texture.jpg",
+      rimHex: 0xffffff,  // Moon's rim color
     }).getPlanet();
+
+    ISSmodel.position.set(0, 0, 0);
   
-    // Position the moon relative to Earth
-    moon.position.set(0, 0, 0);  // Position the moon on the X axis, for example
-  
-    this.planetGroup.add(ISS);
+    this.planetGroup.add(ISSmodel);
   }
 
   createPlanetLights() {
