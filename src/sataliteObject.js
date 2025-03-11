@@ -6,4 +6,3 @@ export class Satlite extends Planet {
     super(props);
   }
 }
-  
