@@ -127,16 +127,7 @@ document.body.appendChild(renderer.domElement);
 const sun = new Sun().getSun();
 scene.add(sun);
 
-const earth = new Earth({
-  orbitSpeed: 0.00029,
-  orbitRadius: 16,
-  orbitRotationDirection: "clockwise",
-  planetSize: 0.5,
-  planetAngle: (-23.4 * Math.PI) / 180,
-  planetRotationSpeed: 0.01,
-  planetRotationDirection: "counterclockwise",
-  planetTexture: "/assets/earth-map-1.jpg",
-}).getPlanet();
+const earth = new Earth().getPlanet();
 scene.add(earth);
 
 const mars = new Mars().getPlanet();

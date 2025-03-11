@@ -9,14 +9,55 @@ import { Moon } from "./moon";
 import { ISS } from "./ISS"
 
 export class Earth extends Planet {
-  constructor(props) {
-    super(props);
+  constructor({
+      orbitSpeed = 0.00029,
+      orbitRadius = 16,
+      orbitRotationDirection = "clockwise",
 
-    this.createPlanetLights();
-    this.createPlanetClouds();
-    this.addMoon();
-    this.addISS();
+      planetSize = 0.5,
+      planetAngle = (-23.4 * Math.PI) / 180,
+      planetRotationSpeed = 0.01,
+      planetRotationDirection = "counterclockwise",
+      planetTexture = "/assets/earth-map-1.jpg",
+
+      rimHex = 0x0088ff,
+      facingHex = 0x000000,
+  
+      rings = null,
+    } = {}) {
+      super(); // ✅ MUST be the first thing inside the constructor when extending a class
+
+      this.orbitSpeed = orbitSpeed;
+      this.orbitRadius = orbitRadius;
+      this.orbitRotationDirection = orbitRotationDirection;
+  
+      this.planetSize = planetSize;
+      this.planetAngle = planetAngle;
+      this.planetTexture = planetTexture;
+      this.planetRotationSpeed = planetRotationSpeed;
+      this.planetRotationDirection = planetRotationDirection;
+  
+      this.rings = rings;
+  
+      this.group = new Group();
+      this.planetGroup = new Group();
+      this.loader = new TextureLoader();
+      this.planetGeometry = new IcosahedronGeometry(this.planetSize, 12);
+  
+      this.createOrbit();
+      this.createRings();
+      this.createPlanet();
+      this.createGlow(rimHex, facingHex);
+  
+      this.animate = this.createAnimateFunction();
+      this.animate();
+
+      this.createPlanetLights();
+      this.createPlanetClouds();
+      this.addMoon();
+      this.addISS();
   }
+
 
   addMoon() {
     const moon = new Moon({
