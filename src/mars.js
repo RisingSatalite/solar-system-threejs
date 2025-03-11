@@ -3,7 +3,7 @@ import { Group, TextureLoader, IcosahedronGeometry } from "three";
 
 export class Mars extends Planet {
   constructor({
-    orbitSpeed = 0.00012,
+    orbitSpeed = 0.00024,
     orbitRadius = 19,
     orbitRotationDirection = "clockwise",
 

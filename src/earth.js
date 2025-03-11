@@ -3,6 +3,9 @@ import {
   AdditiveBlending,
   MeshBasicMaterial,
   MeshStandardMaterial,
+  Group,
+  TextureLoader,
+  IcosahedronGeometry,
 } from "three";
 import { Planet } from "./planet";
 import { Moon } from "./moon";
