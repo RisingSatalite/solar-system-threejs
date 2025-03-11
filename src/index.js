@@ -13,6 +13,7 @@ import { Sun } from "./sun";
 import { Earth } from "./earth";
 import { Planet } from "./planet";
 import { Starfield } from "./starfield";
+import { Mars } from "./mars";
 
 const planets = [
   {
@@ -34,16 +35,6 @@ const planets = [
     planetRotationDirection: "clockwise",
     planetTexture: "/assets/venus-map.jpg",
     rimHex: 0xb66f1f,
-  },
-  {
-    orbitSpeed: 0.00024,
-    orbitRadius: 19,
-    orbitRotationDirection: "clockwise",
-    planetSize: 0.3,
-    planetRotationSpeed: 0.01,
-    planetRotationDirection: "counterclockwise",
-    planetTexture: "/assets/mars-map.jpg",
-    rimHex: 0xbc6434,
   },
   {
     orbitSpeed: 0.00013,
@@ -147,6 +138,9 @@ const earth = new Earth({
   planetTexture: "/assets/earth-map-1.jpg",
 }).getPlanet();
 scene.add(earth);
+
+const mars = new Mars().getPlanet();
+scene.add(mars)
 
 const starfield = new Starfield().getStarfield();
 scene.add(starfield);
