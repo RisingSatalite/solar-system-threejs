@@ -294,10 +294,15 @@ helpPopup.style.cssText = `
 
 helpPopup.innerHTML = `
   <h3 style="margin-top: 0;">Camera Controls</h3>
-  <p>🖱 Left Click + Drag: Rotate</p>
-  <p>🖱 Right Click + Drag: Pan</p>
-  <p>🔍 Scroll Wheel: Zoom</p>
-  <p>🕹 W/A/S/D/Q/E: Move (Pointer Mode)</p>
+  <p>🖱 Click + Hold + Drag: Rotate around the center</p>
+  <p>🖱 Right Click + then Drag: Rotate camera angle</p>
+  <p>🔍 Scroll Wheel or drag in and drag out: Zoom</p>
+  <p>🕹 W: Move forwards</p>
+  <p>🕹 A: Move left</p>
+  <p>🕹 S: Move backwards</p>
+  <p>🕹 D: Move rights</p>
+  <p>🕹 Q: Move up</p>
+  <p>🕹 E: Move down</p>
   <p>🖱 Click anywhere to switch modes</p>
   <button id="close-help" style="
     margin-top: 0.5rem;
