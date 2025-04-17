@@ -15,6 +15,44 @@ import { Planet } from "./planet";
 import { Starfield } from "./starfield";
 import { Mars } from "./mars";
 
+//Make sure WebGL is available
+function isWebGLAvailable() {
+  try {
+    const canvas = document.createElement('canvas');
+    return !!(
+      window.WebGLRenderingContext &&
+      (canvas.getContext('webgl') || canvas.getContext('experimental-webgl'))
+    );
+  } catch (e) {
+    return false;
+  }
+}
+
+function showWebGLErrorMessage() {
+  const warning = document.createElement('div');
+  warning.style.position = 'fixed';
+  warning.style.top = '0';
+  warning.style.left = '0';
+  warning.style.width = '100vw';
+  warning.style.height = '100vh';
+  warning.style.background = '#111';
+  warning.style.color = '#f00';
+  warning.style.display = 'flex';
+  warning.style.alignItems = 'center';
+  warning.style.justifyContent = 'center';
+  warning.style.fontFamily = 'sans-serif';
+  warning.style.fontSize = '20px';
+  warning.style.zIndex = '9999';
+  warning.innerHTML = `
+    🚫 WebGL could not be initialized.<br>
+    This might be due to missing GPU drivers, disabled hardware acceleration, or a browser issue.<br>
+    Try restarting your browser or your computer.
+  `;
+  document.body.appendChild(warning);
+}
+
+if (isWebGLAvailable()) {
+
 const planets = [
   {
     orbitSpeed: 0.00048,
@@ -325,3 +363,7 @@ helpBtn.addEventListener("click", () => {
 document.getElementById("close-help").addEventListener("click", () => {
   helpPopup.style.display = "none";
 });
+
+} else {
+  showWebGLErrorMessage(); // <-- This gets triggered if WebGL is unsupported
+}
