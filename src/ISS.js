@@ -8,7 +8,7 @@ export class ISS extends Satlite {
         orbitSpeed: 0.00001,
         orbitRadius: 1,
         orbitRotationDirection: "clockwise",
-        planetSize: 0.05,
+        planetSize: 0,
         planetRotationSpeed: 0.0001,
         planetRotationDirection: "counterclockwise",
         planetTexture: "/assets/moon-texture.jpg",
