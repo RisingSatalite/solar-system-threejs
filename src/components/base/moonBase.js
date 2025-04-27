@@ -1,7 +1,7 @@
 //Litterally no changes but probably a good idea to keep moons seperate
-import { MoonBase } from "../base/moonBase";
+import { Planet } from "./planet";
   
-export class Moon extends MoonBase {
+export class MoonBase extends Planet {
   constructor(props) {
     super(props);
   }

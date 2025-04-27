@@ -15,6 +15,7 @@ import { Planet } from "./components/base/planet";
 import { Starfield } from "./starfield";
 import { Mars } from "./components/planets/mars";
 import { Venus } from "./components/planets/venus";
+import { Saturn } from "./components/planets/saturn";
 
 //Make sure WebGL is available
 function isWebGLAvailable() {
@@ -74,20 +75,6 @@ const planets = [
     planetRotationDirection: "counterclockwise",
     planetTexture: "/assets/jupiter-map.jpg",
     rimHex: 0xf3d6b6,
-  },
-  {
-    orbitSpeed: 0.0001,
-    orbitRadius: 25,
-    orbitRotationDirection: "clockwise",
-    planetSize: 0.8,
-    planetRotationSpeed: 0.05,
-    planetRotationDirection: "counterclockwise",
-    planetTexture: "/assets/saturn-map.jpg",
-    rimHex: 0xd6b892,
-    rings: {
-      ringsSize: 0.5,
-      ringsTexture: "/assets/saturn-rings.jpg",
-    },
   },
   {
     orbitSpeed: 0.00007,
@@ -164,6 +151,9 @@ scene.add(mars)
 
 const venus = new Venus().getPlanet();
 scene.add(venus)
+
+const saturn = new Saturn().getPlanet();
+scene.add(saturn)
 
 const starfield = new Starfield().getStarfield();
 scene.add(starfield);
