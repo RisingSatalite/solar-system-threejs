@@ -1,15 +1,15 @@
-import { Satlite } from "./sataliteObject";
+import { Satlite } from "../base/sataliteObject";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 export class ISS extends Satlite {
   constructor(props) {
     super({
         ...props,  // Spread any incoming props to allow custom overrides
-        orbitSpeed: 0.00001,
+        orbitSpeed: 0.0005,
         orbitRadius: 1,
-        orbitRotationDirection: "clockwise",
+        orbitRotationDirection: "counterclockwise",
         planetSize: 0,
-        planetRotationSpeed: 0.0001,
+        planetRotationSpeed: 0.0,
         planetRotationDirection: "counterclockwise",
         planetTexture: "/assets/moon-texture.jpg",
         rimHex: 0xffffff,

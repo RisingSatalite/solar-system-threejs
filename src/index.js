@@ -10,11 +10,11 @@ import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { PointerLockControls } from "three/addons/controls/PointerLockControls.js"; // Add PointerLockControls
 
 import { Sun } from "./sun";
-import { Earth } from "./earth";
-import { Planet } from "./planet";
+import { Earth } from "./components/planets/earth";
+import { Planet } from "./components/base/planet";
 import { Starfield } from "./starfield";
-import { Mars } from "./mars";
-import { Venus } from "./venus";
+import { Mars } from "./components/planets/mars";
+import { Venus } from "./components/planets/venus";
 
 //Make sure WebGL is available
 function isWebGLAvailable() {

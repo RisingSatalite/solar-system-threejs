@@ -7,9 +7,9 @@ import {
   TextureLoader,
   IcosahedronGeometry,
 } from "three";
-import { Planet } from "./planet";
-import { Moon } from "./moon";
-import { ISS } from "./ISS"
+import { Planet } from "../base/planet";
+import { Moon } from "../moons/moon";
+import { ISS } from "../satalites/ISS"
 
 export class Earth extends Planet {
   constructor({

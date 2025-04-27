@@ -1,4 +1,4 @@
-import { Planet } from "./planet";
+import { Planet } from "../base/planet";
 import { Group, TextureLoader, IcosahedronGeometry } from "three";
 
 export class Mars extends Planet {
