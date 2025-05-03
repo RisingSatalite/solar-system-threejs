@@ -22,7 +22,7 @@ export class ISS extends Satlite {
 
     console.log("Loading ISS model")
     
-    loader.load('iss.glb', (gltf) => {
+    loader.load('VoyagerProbe.glb', (gltf) => {
       const issModel = gltf.scene;
 
       issModel.scale.set(0.005, 0.005, 0.005);
