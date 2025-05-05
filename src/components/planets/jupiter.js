@@ -52,10 +52,7 @@ export class Jupiter extends Planet {
       this.animate = this.createAnimateFunction();
       this.animate();
 
-      this.createPlanetLights();
-      this.createPlanetClouds();
       this.addMoon();
-      this.addISS();
   }
 
 
@@ -75,47 +72,5 @@ export class Jupiter extends Planet {
     moon.position.set(0, 0, 0);  // Position the moon on the X axis, for example
   
     this.planetGroup.add(moon);
-  }
-
-  addISS() {
-    const ISSmodel = new ISS().getPlanet();
-
-    ISSmodel.position.set(0, 0, 0);
-  
-    this.planetGroup.add(ISSmodel);
-  }
-
-  createPlanetLights() {
-    const planetLightsMaterial = new MeshBasicMaterial({
-      map: this.loader.load("/assets/earth-map-2.jpg"),
-      blending: AdditiveBlending,
-    });
-    const planetLightsMesh = new Mesh(
-      this.planetGeometry,
-      planetLightsMaterial
-    );
-    this.planetGroup.add(planetLightsMesh);
-
-    this.group.add(this.planetGroup);
-  }
-
-  createPlanetClouds() {
-    const planetCloudsMaterial = new MeshStandardMaterial({
-      map: this.loader.load("/assets/earth-map-3.jpg"),
-      transparent: true,
-      opacity: 0.8,
-      blending: AdditiveBlending,
-      alphaMap: this.loader.load(
-        "/assets/earth-map-4.jpg"
-      ),
-    });
-    const planetCloudsMesh = new Mesh(
-      this.planetGeometry,
-      planetCloudsMaterial
-    );
-    planetCloudsMesh.scale.setScalar(1.003);
-    this.planetGroup.add(planetCloudsMesh);
-
-    this.group.add(this.planetGroup);
   }
 }
