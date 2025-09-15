@@ -18,6 +18,10 @@ import { Venus } from "./components/planets/venus";
 import { Saturn } from "./components/planets/saturn";
 import { Jupiter } from "./components/planets/jupiter";
 
+import { inject } from '@vercel/analytics';
+ 
+inject();
+
 //Make sure WebGL is available
 function isWebGLAvailable() {
   try {
